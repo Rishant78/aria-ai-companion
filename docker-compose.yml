@@ -1,0 +1,20 @@
+services:
+  aria:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aria-companion
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-3.5-flash-lite}
+      - TTS_ENABLED=${TTS_ENABLED:-true}
+      - TTS_MODEL=${TTS_MODEL:-gemini-3.8-flash-lite-tts}
+      - TTS_VOICE=${TTS_VOICE:-Sulafat}
+      - TTS_TIMEOUT_SECONDS=${TTS_TIMEOUT_SECONDS:-15.0}
+    env_file:
+      - path: backend/.env
+        required: false
+    restart: unless-stopped
+

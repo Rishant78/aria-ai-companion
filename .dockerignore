@@ -1,0 +1,41 @@
+# Version control
+.git
+.gitignore
+
+# Secrets and local overrides (DO NOT bake API keys into Docker images!)
+.env
+.env.*
+!.env.example
+
+# Python caches and local venv
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.pytest_cache/
+
+# Node caches and dependencies
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
+.vite/
+*.tsbuildinfo
+
+# Logs & temporary files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+

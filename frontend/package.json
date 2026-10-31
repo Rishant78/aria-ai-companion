@@ -1,0 +1,33 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev:frontend": "vite",
+    "dev:backend": "node scripts/start-backend.js",
+    "dev": "concurrently -k --names \"backend,frontend\" --prefix-colors \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/attentionInteract.test.ts tests/idleSystem.test.ts tests/expressionSystem.test.ts tests/gestureSystem.test.ts tests/fullBodyIdle.test.ts tests/speechMouthSystem.test.ts tests/companionChat.test.ts tests/autonomousActivity.test.ts tests/architectureLifecycle.test.ts tests/headTiltExpressive.test.ts tests/audioVoiceSystem.test.ts tests/audioLipSync.test.ts tests/voiceInputTurnTaking.test.ts",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@pixiv/three-vrm": "^3.5.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "happy-dom": "^21.0.4",
+    "oxlint": "^1.89.0",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.5"
+  }
+}

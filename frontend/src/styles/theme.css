@@ -1,0 +1,129 @@
+/* ==============================================================================
+   Immersive Companion Design System & Adaptive Theme Tokens
+   ============================================================================== */
+
+:root {
+  /* Default typography & sizing */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Layout geometry */
+  --radius-full: 9999px;
+  --radius-xl: 20px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Modern color-scheme */
+  color-scheme: light dark;
+
+  /* Default Dark Tokens (Fallback & System Dark) */
+  --color-bg-canvas: #090b13;
+  --color-bg-gradient-top: #161a2c;
+  --color-bg-gradient-bottom: #090b13;
+  --color-bg-radial: radial-gradient(circle at 50% 34%, rgba(139, 126, 255, 0.18) 0%, rgba(28, 33, 56, 0.12) 48%, transparent 75%);
+
+  --color-surface-glass: rgba(18, 22, 38, 0.72);
+  --color-surface-glass-elevated: rgba(24, 29, 50, 0.85);
+  --color-surface-glass-hover: rgba(30, 36, 62, 0.88);
+  --color-surface-input: rgba(14, 17, 30, 0.78);
+
+  --color-border-subtle: rgba(162, 178, 255, 0.12);
+  --color-border-hover: rgba(162, 178, 255, 0.28);
+  --color-border-focus: rgba(162, 178, 255, 0.55);
+
+  --color-text-primary: #f2f4fc;
+  --color-text-secondary: #a8b2ce;
+  --color-text-muted: #6e7999;
+
+  --color-accent: #9d8aff;
+  --color-accent-hover: #b0a0ff;
+  --color-accent-active: #8b75f5;
+  --color-accent-subtle: rgba(157, 138, 255, 0.14);
+  --color-accent-glow: 0 0 24px rgba(157, 138, 255, 0.28);
+
+  --color-status-attentive: #60a5fa;
+  --color-status-listening: #a78bfa;
+  --color-status-speaking: #34d399;
+  --color-status-exploring: #f59e0b;
+  --color-status-error: #f87171;
+  --color-status-error-bg: rgba(248, 113, 113, 0.14);
+
+  --shadow-dock: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--color-border-subtle);
+  --shadow-dialogue: 0 20px 48px rgba(0, 0, 0, 0.40), 0 0 0 1px var(--color-border-subtle);
+  --shadow-drawer: -12px 0 40px rgba(0, 0, 0, 0.45);
+  --shadow-pill: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+  --blur-glass: blur(14px);
+  --blur-glass-heavy: blur(20px);
+}
+
+/* --------------------------------------------------------------------------
+   Light Theme Override (explicit [data-resolved-theme="light"] or system)
+   -------------------------------------------------------------------------- */
+[data-resolved-theme="light"] {
+  color-scheme: light;
+
+  --color-bg-canvas: #e8ecf8;
+  --color-bg-gradient-top: #dbe2f5;
+  --color-bg-gradient-bottom: #ccd5ec;
+  --color-bg-radial: radial-gradient(circle at 50% 34%, rgba(147, 130, 255, 0.28) 0%, rgba(195, 205, 240, 0.55) 50%, transparent 75%);
+
+  --color-surface-glass: rgba(255, 255, 255, 0.88);
+  --color-surface-glass-elevated: rgba(255, 255, 255, 0.96);
+  --color-surface-glass-hover: rgba(246, 248, 255, 0.98);
+  --color-surface-input: rgba(255, 255, 255, 0.92);
+
+  --color-border-subtle: rgba(120, 135, 200, 0.28);
+  --color-border-hover: rgba(110, 125, 200, 0.45);
+  --color-border-focus: rgba(126, 105, 230, 0.65);
+
+  --color-text-primary: #191c28;
+  --color-text-secondary: #565f7c;
+  --color-text-muted: #8892ad;
+
+  --color-accent: #7a63eb;
+  --color-accent-hover: #6950e3;
+  --color-accent-active: #5941d6;
+  --color-accent-subtle: rgba(122, 99, 235, 0.12);
+  --color-accent-glow: 0 0 24px rgba(122, 99, 235, 0.22);
+
+  --color-status-attentive: #2563eb;
+  --color-status-listening: #7c3aed;
+  --color-status-speaking: #059669;
+  --color-status-exploring: #d97706;
+  --color-status-error: #dc2626;
+  --color-status-error-bg: rgba(220, 38, 38, 0.10);
+
+  --shadow-dock: 0 16px 36px rgba(45, 55, 90, 0.12), 0 0 0 1px var(--color-border-subtle);
+  --shadow-dialogue: 0 18px 42px rgba(45, 55, 90, 0.14), 0 0 0 1px var(--color-border-subtle);
+  --shadow-drawer: -12px 0 36px rgba(45, 55, 90, 0.16);
+  --shadow-pill: 0 4px 14px rgba(45, 55, 90, 0.08);
+
+  --blur-glass: blur(14px);
+  --blur-glass-heavy: blur(20px);
+}
+
+/* Explicit [data-resolved-theme="dark"] overrides */
+[data-resolved-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

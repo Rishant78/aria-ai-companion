@@ -1,0 +1,50 @@
+# Blender source and backup files
+*.blend
+*.blend1
+*.blend2
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Frontend build & Vite cache
+dist/
+**/dist/
+dist-ssr/
+**/dist-ssr/
+.vite/
+**/.vite/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment variables & local overrides
+.env
+.env.*
+!.env.example
+*.local
+
+# Python / FastAPI (for future backend)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.pytest_cache/
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
