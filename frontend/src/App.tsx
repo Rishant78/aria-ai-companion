@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AvatarScene } from './components/AvatarScene';
 import { FloatingTopBar } from './components/chat/FloatingTopBar';
 import { SpeechBubbleOverlay } from './components/chat/SpeechBubbleOverlay';
@@ -113,8 +113,89 @@ export function App() {
     framingMode: FramingMode;
   } | null>(null);
 
-  // Optional Dev Controls toolbar toggle (available in DEV mode)
+  // Developer toolbox state (accessible exclusively via Ctrl + Shift + D)
   const [showDevControls, setShowDevControls] = useState(false);
+
+  // Developer toolbox keyboard shortcut: Ctrl + Shift + D toggles, Escape closes.
+  // Accessible strictly via shortcut, never displayed in public UI.
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Must work only when the Aria application window is focused
+      if (
+        typeof document !== 'undefined' &&
+        typeof document.hasFocus === 'function' &&
+        !document.hasFocus()
+      ) {
+        return;
+      }
+
+      // Ignore shortcut when the user is typing or editing content
+      const target = event.target as {
+        tagName?: string;
+        isContentEditable?: boolean;
+        getAttribute?: (attr: string) => string | null;
+      } | null;
+      const activeEl =
+        typeof document !== 'undefined'
+          ? (document.activeElement as {
+              tagName?: string;
+              isContentEditable?: boolean;
+              getAttribute?: (attr: string) => string | null;
+            } | null)
+          : null;
+
+      const isEditable = (el: {
+        tagName?: string;
+        isContentEditable?: boolean;
+        getAttribute?: (attr: string) => string | null;
+      } | null): boolean => {
+        if (!el || typeof el !== 'object') return false;
+        const tag = el.tagName ? el.tagName.toUpperCase() : '';
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
+          return true;
+        }
+        if (el.isContentEditable) {
+          return true;
+        }
+        if (typeof el.getAttribute === 'function' && el.getAttribute('contenteditable') === 'true') {
+          return true;
+        }
+        return false;
+      };
+
+      if (isEditable(target) || isEditable(activeEl)) {
+        return;
+      }
+
+      // Ctrl + Shift + D (or Cmd + Shift + D on Mac) toggles the developer toolbox
+      const isDevShortcut =
+        (event.ctrlKey || event.metaKey) &&
+        event.shiftKey &&
+        !event.altKey &&
+        (event.key === 'D' || event.key === 'd' || event.code === 'KeyD');
+
+      if (isDevShortcut) {
+        event.preventDefault();
+        setShowDevControls((prev) => !prev);
+        return;
+      }
+
+      // Escape closes the developer toolbox
+      if (event.key === 'Escape') {
+        setShowDevControls((prev) => {
+          if (prev) {
+            return false;
+          }
+          return prev;
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const handleViewerControlsReady = useCallback(
     (controls: {
@@ -134,10 +215,6 @@ export function App() {
       setFramingMode((prev: FramingMode) => (prev === 'full' ? 'waist' : 'full'));
     }
   }, [viewerControls]);
-
-  const handleToggleDevControls = useCallback(() => {
-    setShowDevControls((prev) => !prev);
-  }, []);
 
   const topBarStatusKind = attentionStatus.isPaused
     ? 'paused'
@@ -165,8 +242,8 @@ export function App() {
             attentionController={attention}
             expressionController={expressionController}
             gestureController={gestureController}
-            showHud={import.meta.env.DEV && showDevControls}
-            showDevControls={import.meta.env.DEV && showDevControls}
+            showHud={showDevControls}
+            showDevControls={showDevControls}
             onViewerControls={handleViewerControlsReady}
           />
         </ErrorBoundary>
@@ -185,8 +262,6 @@ export function App() {
           historyCount={messages.length}
           isHistoryOpen={isHistoryOpen}
           onToggleHistory={toggleHistory}
-          showDevControls={showDevControls}
-          onToggleDevControls={import.meta.env.DEV ? handleToggleDevControls : undefined}
           voiceEnabled={voiceEnabled}
           onToggleVoice={toggleVoice}
           isAudioPlaying={isAudioPlaying}

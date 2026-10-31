@@ -9,7 +9,7 @@
     "dev": "concurrently -k --names \"backend,frontend\" --prefix-colors \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\"",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/attentionInteract.test.ts tests/idleSystem.test.ts tests/expressionSystem.test.ts tests/gestureSystem.test.ts tests/fullBodyIdle.test.ts tests/speechMouthSystem.test.ts tests/companionChat.test.ts tests/autonomousActivity.test.ts tests/architectureLifecycle.test.ts tests/headTiltExpressive.test.ts tests/audioVoiceSystem.test.ts tests/audioLipSync.test.ts tests/voiceInputTurnTaking.test.ts",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/attentionInteract.test.ts tests/idleSystem.test.ts tests/expressionSystem.test.ts tests/gestureSystem.test.ts tests/fullBodyIdle.test.ts tests/speechMouthSystem.test.ts tests/companionChat.test.ts tests/autonomousActivity.test.ts tests/architectureLifecycle.test.ts tests/headTiltExpressive.test.ts tests/audioVoiceSystem.test.ts tests/audioLipSync.test.ts tests/voiceInputTurnTaking.test.ts tests/devToolboxShortcut.test.ts",
     "preview": "vite preview"
   },
   "dependencies": {

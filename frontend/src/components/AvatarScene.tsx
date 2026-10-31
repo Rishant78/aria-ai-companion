@@ -50,7 +50,7 @@ export interface AvatarSceneProps {
   initialFramingMode?: FramingMode;
   /** Whether to display the subtle companion status, awareness controls, & camera HUD. */
   showHud?: boolean;
-  /** Development-only idle & expression animation test controls (defaults to import.meta.env.DEV). */
+  /** Developer animation & posture test controls (toggled via Ctrl + Shift + D). */
   showDevControls?: boolean;
   /** Optional extra CSS class on the outer container. */
   className?: string;
@@ -117,7 +117,7 @@ export function AvatarScene({
   controllers,
   initialFramingMode = 'full',
   showHud = true,
-  showDevControls = import.meta.env.DEV,
+  showDevControls = false,
   className,
   onModelLoaded,
   onError,
@@ -372,8 +372,8 @@ export function AvatarScene({
         </div>
       )}
 
-      {/* Development-Only Idle, Lower-Body & Expression Animation Test Controls (dead-code eliminated in production builds) */}
-      {import.meta.env.DEV && showHud && showDevControls && loadState.status === 'ready' && modelSummary && (
+      {/* Developer animation & posture test controls (toggled via Ctrl + Shift + D) */}
+      {showHud && showDevControls && loadState.status === 'ready' && modelSummary && (
         <div className="avatar-scene__dev-stack">
           <div
             className="avatar-scene__dev-panel"
