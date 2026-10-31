@@ -2,7 +2,7 @@
 
 Aria is an interactive 3D AI companion powered by Google Gemini, featuring lifelike animations, emotional expressions, natural conversations and real-time voice interaction.
 
-## ✨ Features
+##  Features
 - Interactive 3D VRM avatar with natural gaze and movement.
 - Dynamic emotions, gestures and autonomous activities.
 - Gemini-powered conversations.
